@@ -4,6 +4,7 @@ import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 import Translate from "./components/Translate";
 import Route from "./components/Route";
+import Header from "./components/Header";
 
 const items = [
     {
@@ -40,22 +41,28 @@ const App = () => {
 
     return (
         <div className="ui container">
-            <Route path="/" children={<Accordion items={items} />} />
+            <Header />
 
-            <Route path="/list" children={<Search />} />
+            <Route path="/">
+                <Accordion items={items} />
+            </Route>
 
-            <Route
-                path="/dropdown"
-                children={
-                    <Dropdown
-                        options={options}
-                        selected={selected}
-                        onSelectedChange={setSelected}
-                    />
-                }
-            />
+            <Route path="/list">
+                <Search />
+            </Route>
 
-            <Route path="/translate" children={<Translate />} />
+            <Route path="/dropdown">
+                <Dropdown
+                    label="Select a color"
+                    options={options}
+                    selected={selected}
+                    onSelectedChange={setSelected}
+                />
+            </Route>
+
+            <Route path="/translate">
+                <Translate />
+            </Route>
         </div>
     );
 };
